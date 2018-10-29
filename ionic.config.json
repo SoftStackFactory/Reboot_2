@@ -1,0 +1,7 @@
+{
+  "name": "Reboot_2",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
