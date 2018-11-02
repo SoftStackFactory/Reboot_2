@@ -6,6 +6,8 @@ import { InputsProvider } from './../../providers/inputs/inputs';
   templateUrl: 'sliders.html'
 })
 export class SlidersComponent {
+  
+ //Initializes the different values that users can rate
   career: number = 5;
   finance: number = 5;
   personalGrowth: number = 5;
@@ -19,15 +21,26 @@ export class SlidersComponent {
 
   constructor( public Inputs: InputsProvider){}
   
-  status = () => {
-    let Status = [this.attitude, this.career, this.family, this.finance, this.health, this.family, this.relationships, this.socialLife]
-    this.Inputs.changeStatus(Status)
-  }
+
   change(){
-    console.log(this.career)
+    //Status is an array of the 8 values, Charts.Js uses in array to
+    //build the chart
+    let Status = [
+      this.attitude,
+      this.career,
+      this.family,
+      this.finance,
+      this.health,
+      this.family,
+      this.relationships,
+      this.socialLife
+                ]
+    //sends the status array to the inputs service where it sets the value
+    //of the behavior subject so that it can update in realtime as an observable
+    this.Inputs.changeStatus(Status)
+
   }
   ionViewDidLoad(){
-    
 
   }
  
