@@ -14,11 +14,8 @@ export class InputsProvider {
   changeStatus(val : any){
     this.statusSource.next(val)
     console.log('inputs',val)
+    console.log(this.currentStatus)
   }
-  //get status can be subscribed to in the chart component so that as the sliders update the
-  //chart can be updated.
-  getStatus(){
-    
-  }
+  
 
 }
