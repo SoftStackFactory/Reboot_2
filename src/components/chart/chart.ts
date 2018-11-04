@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { InputsProvider } from './../../providers/inputs/inputs';
 import { Chart } from 'chart.js'
-
+import 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'chart',
@@ -12,7 +12,7 @@ export class ChartComponent implements OnInit {
   text: string;
   data:any
   chart: any
-  
+  status;
   constructor(public input:InputsProvider) { }
 
   updateChart = (values) =>{
@@ -79,15 +79,21 @@ export class ChartComponent implements OnInit {
   }
   
   ngOnInit() { 
-    this.drawChart(this.input.initValue)
-    console.log('on init load')
+    this.drawChart(this.input.initValue)  
+    Chart.defaults.polarArea.animation.animateRotate = false;
+    Chart.defaults.polarArea.animation.animateScale = false;
+    Chart.defaults.polarArea.scale.ticks.min=0;
+    Chart.defaults.polarArea.scale.ticks.max=10;
+
   }
   ngAfterViewInit(){
     
-    let status = this.input.currentStatus.subscribe((res)=>{
+    this.status = this.input.currentStatus.subscribe((res)=>{
       this.data = res;
-      console.log(res)
       this.updateChart(res)
     })
+  }
+  ionViewDidLeave(){
+   this.status.unsubscribe();
   }
 }
