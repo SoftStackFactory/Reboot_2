@@ -8,7 +8,7 @@ export class InputsProvider {
   //Current status is the observable.
   currentStatus = this.statusSource.asObservable();
 
-  initValue:[];
+  initValue:any;
   constructor() {
   }
   //Function that is called on sliders.ts, changes the value of the section in real time.

@@ -31,7 +31,7 @@ export class SlidersComponent implements OnInit {
       this.family,
       this.finance,
       this.health,
-      this.family,
+      this.personalGrowth,
       this.relationships,
       this.socialLife
                 ]
@@ -47,7 +47,7 @@ export class SlidersComponent implements OnInit {
       this.family,
       this.finance,
       this.health,
-      this.family,
+      this.personalGrowth,
       this.relationships,
       this.socialLife
                 ]
