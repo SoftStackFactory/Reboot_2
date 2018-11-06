@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
 import { TimelineComponent } from  '../components/timeline/timeline';
 import { WizardPage } from '../pages/wizard/wizard';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,7 +16,7 @@ import { ChartPage } from '../pages/chart/chart';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    ProfilePage,
     TimelineComponent,
     WizardPage,
     ChartPage
@@ -29,7 +29,7 @@ import { ChartPage } from '../pages/chart/chart';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    ProfilePage,
     TimelineComponent,
     WizardPage,
     ChartPage
