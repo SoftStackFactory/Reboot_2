@@ -9,6 +9,9 @@ import { WizardPage } from '../pages/wizard/wizard';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InputsProvider } from '../providers/inputs/inputs';
+import { ComponentsModule } from './../components/components.module';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -31,7 +35,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    InputsProvider
   ]
 })
 export class AppModule {}
