@@ -5,8 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { TimelineComponent } from  '../components/timeline/timeline';
 import { WizardPage } from '../pages/wizard/wizard';
-
+import { ChartPage } from '../pages/chart/chart';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InputsProvider } from '../providers/inputs/inputs';
@@ -18,7 +19,9 @@ import { ComponentsModule } from './../components/components.module';
     MyApp,
     HomePage,
     ListPage,
-    WizardPage
+    TimelineComponent
+    WizardPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import { ComponentsModule } from './../components/components.module';
     MyApp,
     HomePage,
     ListPage,
-    WizardPage
+    TimelineComponent,
+    WizardPage,
+    ChartPage
   ],
   providers: [
     StatusBar,
