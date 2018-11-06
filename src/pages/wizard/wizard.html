@@ -18,7 +18,7 @@
 
 <ion-content padding>
 
-  <ion-slides>
+  <ion-slides pager='true' paginationType='progress'>
 
     <ion-slide>
       <form [formGroup]="firstForm">
@@ -57,10 +57,12 @@
 
         <ion-item *ngIf="userData.disability === 'true'">
           <ion-label text-wrap>Enter your disability percentage</ion-label>
-          <ion-select [(ngModel)]="disabilityPercent" name="disabilityPercent">
-            <ion-option ng-value="true">Yes</ion-option>
-            <ion-option ng-value="false">No</ion-option>
-          </ion-select>
+          <ion-badge _ngcontent-c0=""  item-end="" class="badge badge-ios badge-ios-danger">{{disabilityPercent}}%</ion-badge>
+              <ion-range formControlName="disabledPercent"  min=0 max=100 step=10 pin="true" snaps="true" [(ngModel)]="disabilityPercent">
+                  <ion-label range-left>0</ion-label>
+                  <ion-label range-right>100</ion-label>
+                </ion-range>
+        
         </ion-item>
 
       </form>
