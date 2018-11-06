@@ -4,22 +4,20 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { TimelineComponent } from  '../components/timeline/timeline';
 import { WizardPage } from '../pages/wizard/wizard';
-import { ChartPage } from '../pages/chart/chart';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InputsProvider } from '../providers/inputs/inputs';
 import { ComponentsModule } from './../components/components.module';
+import { ChartPage } from '../pages/chart/chart';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
-    TimelineComponent
+    TimelineComponent,
     WizardPage,
     ChartPage
   ],
@@ -32,7 +30,6 @@ import { ComponentsModule } from './../components/components.module';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     TimelineComponent,
     WizardPage,
     ChartPage
