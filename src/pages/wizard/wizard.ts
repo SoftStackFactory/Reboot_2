@@ -12,6 +12,7 @@ import { Slides } from 'ionic-angular';
 })
 export class WizardPage {
   @ViewChild(Slides) slides: Slides;  
+
   firstForm: FormGroup;
   userData: any = {
     branch: String,
@@ -34,7 +35,12 @@ export class WizardPage {
       'vet': ['', Validators.compose([Validators.required])],
       'date': ['', Validators.compose([Validators.required])],
       'disabled': ['', Validators.compose([Validators.required])],
+      'disabledPercent': ['']
     });
+    this.firstForm.statusChanges
+    .subscribe(val => {
+      this.changeSwipe(this.firstForm.valid)
+    })
   }
 
     ionViewDidLoad() {
@@ -50,5 +56,12 @@ export class WizardPage {
       console.log(this.userData.disability)
     }
 
-
+  
+    changeSwipe(valid: boolean) {
+      if(valid == true) {
+        this.slides.lockSwipeToNext(false)
+      } else {
+        this.slides.lockSwipeToNext(true)
+      } 
   }
+}
