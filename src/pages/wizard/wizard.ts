@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Slides } from 'ionic-angular';
 
 
@@ -11,39 +11,44 @@ import { Slides } from 'ionic-angular';
   templateUrl: 'wizard.html',
 })
 export class WizardPage {
-  @ViewChild(Slides) slides: Slides;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
-  }
+  @ViewChild(Slides) slides: Slides;  
   firstForm: FormGroup;
   userData: any = {
     branch: String,
     vetOrActive: String,
     sepDate: Date,
-    disability: Boolean,
+    disability: String,
     disabilityPercent: Number,
-    employed: Boolean,
+    employed: String,
     lastEmployed: Date,
     marital: String,
     rank: String,
     mos: String
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WizardPage');
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder) {
+    this.firstForm = formBuilder.group({
+      'branch': ['', Validators.compose([Validators.required])],
+      'vet': ['', Validators.compose([Validators.required])],
+      'date': ['', Validators.compose([Validators.required])],
+      'disabled': ['', Validators.compose([Validators.required])],
+    });
   }
 
-  onSubmit() {
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad WizardPage');
+    }
+
+    onSubmit() {
+
+    }
+
+    disabled(status) {
+      this.userData.disability = status;
+      console.log(this.userData.disability)
+    }
+
 
   }
-//   function() {
-//   this.firstForm = this.formBuilder.group({
-//     firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-//     lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-//     age: ['', AgeValidator.isValid]
-// });
-//   }
-
-  
-
-}

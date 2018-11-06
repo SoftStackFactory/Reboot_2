@@ -1,7 +1,9 @@
 <ion-header>
 
   <ion-navbar>
-
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Questionnare {{slides.getActiveIndex() + 1}}/3</ion-title>
 <ion-buttons *ngIf="slides.getActiveIndex() > 0">
     <button ion-button icon-left (click)="slides.slidePrev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
@@ -19,11 +21,11 @@
   <ion-slides>
 
     <ion-slide>
-      <form>
+      <form [formGroup]="firstForm">
 
         <ion-item>
           <ion-label text-wrap>What is your military branch?</ion-label>
-          <ion-select [(ngModel)]="branch" name="branch">
+          <ion-select  formControlName="branch" [(ngModel)]="branch" name="branch">
             <ion-option value="Army">Army</ion-option>
             <ion-option value="Navy">Navy</ion-option>
             <ion-option value="Marine Corps">Marine Corps</ion-option>
@@ -34,7 +36,7 @@
 
         <ion-item>
           <ion-label text-wrap>Are you currently active or a veteran?</ion-label>
-          <ion-select [(ngModel)]="vetOrActive" name="vetOrActive">
+          <ion-select  formControlName="vet" [(ngModel)]="vetOrActive" name="vetOrActive">
             <ion-option value="veteran">Veteran</ion-option>
             <ion-option value="active">Active</ion-option>
           </ion-select>
@@ -42,16 +44,25 @@
 
         <ion-item>
           <ion-label text-wrap>When is/was your seperation date?</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="sepDate" name="sepDate"></ion-datetime>
+          <ion-datetime  formControlName="date" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="sepDate" name="sepDate"></ion-datetime>
         </ion-item>
 
         <ion-item>
           <ion-label text-wrap>Do you have a disability?</ion-label>
-          <ion-select [(ngModel)]="disability" name="disability">
+          <ion-select  formControlName="disabled" (ionChange)="disabled(disability)" [(ngModel)]="disability" name="disability">
+            <ion-option value='true'>Yes</ion-option>
+            <ion-option value="false">No</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="userData.disability === 'true'">
+          <ion-label text-wrap>Enter your disability percentage</ion-label>
+          <ion-select [(ngModel)]="disabilityPercent" name="disabilityPercent">
             <ion-option ng-value="true">Yes</ion-option>
             <ion-option ng-value="false">No</ion-option>
           </ion-select>
         </ion-item>
+
       </form>
     </ion-slide>
 
