@@ -6,9 +6,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { TimelineComponent } from  '../components/timeline/timeline';
-
+import { WizardPage } from '../pages/wizard/wizard';
+import { ChartPage } from '../pages/chart/chart';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InputsProvider } from '../providers/inputs/inputs';
+import { ComponentsModule } from './../components/components.module';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +20,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     TimelineComponent
+    WizardPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -26,12 +33,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    TimelineComponent
+    TimelineComponent,
+    WizardPage,
+    ChartPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    InputsProvider
   ]
 })
 export class AppModule {}
