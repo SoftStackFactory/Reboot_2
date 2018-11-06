@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InputsProvider } from '../providers/inputs/inputs';
 import { ComponentsModule } from './../components/components.module';
+import { ChartPage } from '../pages/chart/chart';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ComponentsModule } from './../components/components.module';
     MyApp,
     HomePage,
     ListPage,
-    WizardPage
+    WizardPage,
+    ChartPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { ComponentsModule } from './../components/components.module';
     MyApp,
     HomePage,
     ListPage,
-    WizardPage
+    WizardPage,
+    ChartPage
   ],
   providers: [
     StatusBar,
