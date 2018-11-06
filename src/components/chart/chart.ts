@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { InputsProvider } from './../../providers/inputs/inputs';
 import { Chart } from 'chart.js'
-import 'chartjs-plugin-datalabels';
 import 'chartjs-plugin-labels';
 
 @Component({
