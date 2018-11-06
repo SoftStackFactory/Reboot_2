@@ -52,11 +52,11 @@ http://localhost:3000/
 
 ### Branches
 
-Reboot employs a release branch methodology for maintaining our branches. When working with new branches, create branches off of `dev` only.
+Reboot employs a release branch methodology for maintaining our branches. When working with new branches, create branches off of `development` only.
 
 `master` - Current release working production branch
 
-`dev` - Next release development branch
+`development` - Next release development branch
 
 Whenever you pick up working on the application, make sure that you fetch the current state of the application. This can be done by using the command:  
 
@@ -64,10 +64,10 @@ Whenever you pick up working on the application, make sure that you fetch the cu
 git pull
 ```
 
-Then, you'll need to checkout a branch to work from. Most of the time it will be dev:
+Then, you'll need to checkout a branch to work from. Most of the time it will be development:
 
 ```
-git checkout -b [123-my-branch-name] origin/dev
+git checkout -b [123-my-branch-name] origin/development
 ```
 
 For branch names, please use `[issue number]-[my-branch-name]`. For example, if I was working off of an issue # 4 for a feature to add a menu, I would name my new branch `4-new-menu`.
@@ -106,7 +106,7 @@ To view the project, download the view application and use the following AppID: 
 
 This will always reflect `origin/master`. 
 
-#### Dev
+#### Development
 
 This will be a working development branch. The repo admin will have access to this and will deploy it on a regular release schedule.
 
