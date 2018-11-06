@@ -18,7 +18,7 @@
 
 <ion-content padding>
 
-  <ion-slides pager='true' paginationType='progress'>
+  <ion-slides (ionSlideWillChange)="slideChange()" pager='true' paginationType='progress'>
 
     <ion-slide>
       <form [formGroup]="firstForm">
@@ -69,7 +69,28 @@
     </ion-slide>
 
     <ion-slide>
-      <h1>Slide 2</h1>
+      <form [formGroup] = "secondForm">
+        <ion-item>
+            <ion-label text-wrap>Are you currently employed?</ion-label>
+            <ion-select  formControlName="employed" [(ngModel)]="employed" name="employed">
+              <ion-option value="true">Yes</ion-option>
+              <ion-option value="false">No</ion-option>
+            </ion-select>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label text-wrap>When were you last employed?</ion-label>
+            <ion-datetime  formControlName="employedDate" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="lastEmployed" name="employedDate"></ion-datetime>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label text-wrap>Are you married?</ion-label>
+            <ion-select  formControlName="marital" [(ngModel)]="marital" name="marital">
+              <ion-option value='true'>Yes</ion-option>
+              <ion-option value="false">No</ion-option>
+            </ion-select>
+          </ion-item>
+      </form>
     </ion-slide>
 
     <ion-slide>

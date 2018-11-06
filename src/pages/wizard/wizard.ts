@@ -11,9 +11,10 @@ import { Slides } from 'ionic-angular';
   templateUrl: 'wizard.html',
 })
 export class WizardPage {
-  @ViewChild(Slides) slides: Slides;  
+  @ViewChild(Slides) slides: Slides;
 
   firstForm: FormGroup;
+  secondForm: FormGroup;
   userData: any = {
     branch: String,
     vetOrActive: String,
@@ -38,30 +39,46 @@ export class WizardPage {
       'disabledPercent': ['']
     });
     this.firstForm.statusChanges
-    .subscribe(val => {
-      this.changeSwipe(this.firstForm.valid)
-    })
+      .subscribe(val => {
+        this.changeSwipe(this.firstForm.valid)
+      })
+
+      this.secondForm = formBuilder.group({
+        'employed': ['', Validators.compose([Validators.required])],
+        'employedDate': ['', Validators.compose([Validators.required])],
+        'marital': ['', Validators.compose([Validators.required])],
+      });
+      this.secondForm.statusChanges
+      .subscribe(val => {
+        this.changeSwipe(this.secondForm.valid)
+      })
   }
 
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad WizardPage');
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad WizardPage');
+  }
+
+  onSubmit() {
+
+  }
+
+  disabled(status) {
+    this.userData.disability = status;
+    console.log(this.userData.disability)
+  }
+
+
+  changeSwipe(valid: boolean) {
+    if (valid === true) {
+      this.slides.lockSwipeToNext(false)
+    } else {
+      this.slides.lockSwipeToNext(true)
     }
+  }
 
-    onSubmit() {
-
+  slideChange() {
+    if (this.slides.getActiveIndex() >= 1) {
+      this.slides.lockSwipeToNext(true)
     }
-
-    disabled(status) {
-      this.userData.disability = status;
-      console.log(this.userData.disability)
-    }
-
-  
-    changeSwipe(valid: boolean) {
-      if(valid == true) {
-        this.slides.lockSwipeToNext(false)
-      } else {
-        this.slides.lockSwipeToNext(true)
-      } 
   }
 }
