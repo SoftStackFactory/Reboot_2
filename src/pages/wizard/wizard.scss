@@ -10,3 +10,10 @@ ion-title {
   .slide-zoom {
     height: 100%;
     }
+    .swiper-container-horizontal > .swiper-pagination-progress {
+      left: 0;
+      top: 90%;
+      width: 100%;
+      height: 4px;
+  }
+  
