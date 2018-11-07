@@ -12,12 +12,11 @@
   <ion-list>
     <button detail-none (click)="expandItem(item)" ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
-        <img src="http://placehold.it/100">
+          <ion-icon name="calendar"></ion-icon>
       </ion-thumbnail>
       <h2>{{item.title}}</h2>
-      <p></p>
       <timeline [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
-          Hello people
+    
       </timeline>
       <button ion-button clear item-end>View</button>
     </button>
