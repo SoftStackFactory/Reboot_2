@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
 
 
 /**
@@ -13,50 +13,17 @@ import { Component, Input } from '@angular/core';
 })
 export class TimelineComponent {
 
-  list = [
-    {
-      title: 'Getting Out',
-      checkmark: true,
-      completed: false,
-    },
-    {
-      title: 'Something else',
-      checkmark: true,
-      completed: false,
-    }
-  ]
+  @ViewChild('expandWrapper', {read: ElementRef}) expandWrapper;
+  @Input('expanded') expanded;
+  @Input('expandHeight') expandHeight;
 
-  @Input('endIcon') endIcon = "ionic";
 
-  constructor() {
 
-  }
-  toggleItem(item){
-    if(item.itemExpand){
-      item.itemExpand = false;
-    } else {
-      item.itemExpand = true;
-    }
-  }
+  constructor(public renderer: Renderer) { }
   
+  ngAfterViewInit(){
+    this.renderer.setElementStyle(this.expandWrapper.nativeElement, 'height', this.expandHeight + 'px');   
 }
 
-@Component({
-  selector: 'timeline-item',
-  template: '<ng-content></ng-content>'
-})
-export class TimelineItemComponent {
-  constructor(){
-
-  }
 }
 
-@Component({
-  selector: 'timeline-time',
-  template: '<span>{{time.subtitle}}</span><span>{{time.title}}</span>'
-})
-export class TimelineTimeComponent {
-  constructor(){
-
-  }
-}

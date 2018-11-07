@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Timeline</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-list>
+    <button detail-none (click)="expandItem(item)" ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img src="http://placehold.it/100">
+      </ion-thumbnail>
+      <h2>My Neighbor Totoro</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <timeline [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+          Hello people
+      </timeline>
+      <button ion-button clear item-end>View</button>
+    </button>
+  </ion-list>
+
+</ion-content>
