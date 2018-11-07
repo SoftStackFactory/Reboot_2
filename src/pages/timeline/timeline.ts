@@ -21,8 +21,12 @@ export class TimelinePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.items = [
-      {expanded: false},
-      {expanded: false},
+      {title: 'Getting out',
+      expanded: false
+      },
+      {title: 'Completing paperwork',
+      expanded: false
+      },
       {expanded: false},
       {expanded: false},
 
