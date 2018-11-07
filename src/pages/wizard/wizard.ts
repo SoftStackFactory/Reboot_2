@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Slides } from 'ionic-angular';
+import { UserDataProvider } from '../../providers/user-data/user-data'
 
 
 
@@ -15,42 +16,43 @@ export class WizardPage {
 
   firstForm: FormGroup;
   secondForm: FormGroup;
-  userData: any = {
-    branch: String,
-    vetOrActive: String,
-    sepDate: Date,
-    disability: String,
-    disabilityPercent: Number,
-    employed: String,
-    lastEmployed: Date,
-    marital: String,
-    rank: String,
-    mos: String
-  }
+  thirdForm: FormGroup;
+
+  disabledStatus: String;
+  employedStatus: String;
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public userData: UserDataProvider) {
     this.firstForm = formBuilder.group({
       'branch': ['', Validators.compose([Validators.required])],
-      'vet': ['', Validators.compose([Validators.required])],
-      'date': ['', Validators.compose([Validators.required])],
-      'disabled': ['', Validators.compose([Validators.required])],
-      'disabledPercent': ['']
+      'vetOrActive': ['', Validators.compose([Validators.required])],
+      'sepDate': ['', Validators.compose([Validators.required])],
+      'disability': ['', Validators.compose([Validators.required])],
+      'disabilityPercent': []
     });
     this.firstForm.statusChanges
-      .subscribe(val => {
-        this.changeSwipe(this.firstForm.valid)
+      .subscribe( _ => {
+        this.changeLock(this.firstForm.valid)
       })
 
       this.secondForm = formBuilder.group({
         'employed': ['', Validators.compose([Validators.required])],
-        'employedDate': ['', Validators.compose([Validators.required])],
+        'lastEmployed': [''],
         'marital': ['', Validators.compose([Validators.required])],
       });
       this.secondForm.statusChanges
-      .subscribe(val => {
-        this.changeSwipe(this.secondForm.valid)
+      .subscribe( _ => {
+        this.changeLock(this.secondForm.valid)
+      });
+      this.thirdForm = formBuilder.group({
+        'question': ['', Validators.compose([Validators.required])],
+      });
+      this.thirdForm.statusChanges
+      .subscribe( _ => {
+        this.changeLock(this.thirdForm.valid)
       })
   }
 
@@ -59,16 +61,30 @@ export class WizardPage {
   }
 
   onSubmit() {
-
+    this.userData.user = {
+      branch: this.firstForm.value.branch,
+      vetOrActive: this.firstForm.value.vetOrActive,
+      sepDate: this.firstForm.value.sepDate,
+      disability: this.firstForm.value.disability,
+      disabilityPercent: this.firstForm.value.disabilityPercent,
+      employed: this.secondForm.value.employed,
+      lastEmployed: this.secondForm.value.lastEmployed,
+      marital: this.secondForm.value.marital,
+      question: this.thirdForm.value.question,
+    }
+    console.log(this.userData.user)
   }
 
   disabled(status) {
-    this.userData.disability = status;
-    console.log(this.userData.disability)
+    this.disabledStatus = status;
+  }
+
+  changeEmployed(status) {
+    this.employedStatus = status;
   }
 
 
-  changeSwipe(valid: boolean) {
+  changeLock(valid) {
     if (valid === true) {
       this.slides.lockSwipeToNext(false)
     } else {
@@ -77,8 +93,14 @@ export class WizardPage {
   }
 
   slideChange() {
-    if (this.slides.getActiveIndex() >= 1) {
+    if (this.slides.getActiveIndex() === 1 && !this.secondForm.valid) {
       this.slides.lockSwipeToNext(true)
+    }
+    else if (this.slides.getActiveIndex() === 2 && !this.thirdForm.valid) {
+      this.slides.lockSwipeToNext(true);
+    }
+    else {
+      this.slides.lockSwipeToNext(false);
     }
   }
 }

@@ -9,7 +9,9 @@
     <button ion-button icon-left (click)="slides.slidePrev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
   </ion-buttons>
   <ion-buttons end>
-    <button ion-button icon-right (click)="slides.slideNext()">Next <ion-icon name="arrow-forward"></ion-icon></button>
+    <button *ngIf="slides.getActiveIndex() < 2" ion-button icon-right (click)="slides.slideNext()">Next <ion-icon name="arrow-forward"></ion-icon></button>
+    <button *ngIf="thirdForm.valid" ion-button icon-right (click)="onSubmit()">Submit <ion-icon name="arrow-forward"></ion-icon></button>
+
   </ion-buttons>
   </ion-navbar>
 
@@ -36,7 +38,7 @@
 
         <ion-item>
           <ion-label text-wrap>Are you currently active or a veteran?</ion-label>
-          <ion-select  formControlName="vet" [(ngModel)]="vetOrActive" name="vetOrActive">
+          <ion-select  formControlName="vetOrActive" [(ngModel)]="vetOrActive" name="vetOrActive">
             <ion-option value="veteran">Veteran</ion-option>
             <ion-option value="active">Active</ion-option>
           </ion-select>
@@ -44,21 +46,21 @@
 
         <ion-item>
           <ion-label text-wrap>When is/was your seperation date?</ion-label>
-          <ion-datetime  formControlName="date" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="sepDate" name="sepDate"></ion-datetime>
+          <ion-datetime  formControlName="sepDate" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="sepDate" name="sepDate"></ion-datetime>
         </ion-item>
 
         <ion-item>
           <ion-label text-wrap>Do you have a disability?</ion-label>
-          <ion-select  formControlName="disabled" (ionChange)="disabled(disability)" [(ngModel)]="disability" name="disability">
+          <ion-select  formControlName="disability" (ionChange)="disabled(disability)" [(ngModel)]="disability" name="disability">
             <ion-option value='true'>Yes</ion-option>
             <ion-option value="false">No</ion-option>
           </ion-select>
         </ion-item>
 
-        <ion-item *ngIf="userData.disability === 'true'">
+        <ion-item *ngIf="disabledStatus === 'true'">
           <ion-label text-wrap>Enter your disability percentage</ion-label>
           <ion-badge _ngcontent-c0=""  item-end="" class="badge badge-ios badge-ios-danger">{{disabilityPercent}}%</ion-badge>
-              <ion-range formControlName="disabledPercent"  min=0 max=100 step=10 pin="true" snaps="true" [(ngModel)]="disabilityPercent">
+              <ion-range formControlName="disabilityPercent"  min=0 max=100 step=10 pin="true" snaps="true" [(ngModel)]="disabilityPercent">
                   <ion-label range-left>0</ion-label>
                   <ion-label range-right>100</ion-label>
                 </ion-range>
@@ -72,15 +74,15 @@
       <form [formGroup] = "secondForm">
         <ion-item>
             <ion-label text-wrap>Are you currently employed?</ion-label>
-            <ion-select  formControlName="employed" [(ngModel)]="employed" name="employed">
+            <ion-select  formControlName="employed" (ionChange)="changeEmployed(employed)" [(ngModel)]="employed" name="employed">
               <ion-option value="true">Yes</ion-option>
               <ion-option value="false">No</ion-option>
             </ion-select>
           </ion-item>
   
-          <ion-item>
+          <ion-item *ngIf="employedStatus === 'false'">
             <ion-label text-wrap>When were you last employed?</ion-label>
-            <ion-datetime  formControlName="employedDate" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="lastEmployed" name="employedDate"></ion-datetime>
+            <ion-datetime  formControlName="lastEmployed" displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" max="2050" [(ngModel)]="lastEmployed" name="lastEmployed"></ion-datetime>
           </ion-item>
   
           <ion-item>
@@ -94,7 +96,14 @@
     </ion-slide>
 
     <ion-slide>
-      <h1>Slide 3</h1>
+      <form [formGroup] = "thirdForm">
+          <ion-item>
+              <ion-label text-wrap>Additional question?</ion-label>
+              <ion-input  formControlName="question" [(ngModel)]="question" name="question" placeholder="yeet">
+              </ion-input>
+            </ion-item>
+      </form>
+      
     </ion-slide>
 
 
