@@ -1,3 +1,14 @@
 page-chart {
-
+#main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px, 0;
+}
+#sliderWrapper {
+  order: 2;
+}
+#chartWrapper {
+  order: 1;
+}
 }
