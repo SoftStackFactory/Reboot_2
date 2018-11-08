@@ -9,6 +9,7 @@ import { TimelinePage } from '../pages/timeline/timeline'
 import { WizardPage } from '../pages/wizard/wizard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { UserDataProvider } from '../providers/user-data/user-data';
 import { InputsProvider } from '../providers/inputs/inputs';
 import { ComponentsModule } from './../components/components.module';
 import { ChartPage } from '../pages/chart/chart';
@@ -17,11 +18,16 @@ import { ChartPage } from '../pages/chart/chart';
 @NgModule({
   declarations: [
     MyApp,
+    WizardPage,
     ProfilePage,
     TimelineComponent,
     TimelinePage,
     WizardPage,
     ChartPage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,7 @@ import { ChartPage } from '../pages/chart/chart';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    WizardPage
     ProfilePage,
     TimelineComponent,
     TimelinePage,
@@ -41,6 +48,7 @@ import { ChartPage } from '../pages/chart/chart';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserDataProvider
     InputsProvider
   ]
 })
