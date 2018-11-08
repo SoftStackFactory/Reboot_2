@@ -7,6 +7,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { TimelineComponent } from '../components/timeline/timeline'
 import { WizardPage } from '../pages/wizard/wizard';
 import { ChartPage } from './../pages/chart/chart';
+import { TimelinePage } from '../pages/timeline/timeline';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +25,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Profile', component: ProfilePage },
-      { title: 'Timeline', component: TimelineComponent},
+      { title: 'Timeline', component: TimelinePage},
       { title: 'Welcome Wizard', component: WizardPage},
       { title: 'Chart', component: ChartPage}
     ];
